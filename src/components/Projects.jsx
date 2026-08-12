@@ -16,7 +16,7 @@ const PROJECTS = [
       'A modern responsive developer portfolio website built with React and Vite.',
     tags: ['React', 'Vite', 'JavaScript', 'CSS'],
     github: 'https://github.com/PuranChaudhary/puran-portfolio',
-    demo: 'https://example.com/',
+    demo: 'https://puranchaudhary.com.np/',
   },
   {
     name: 'Student Management System',
