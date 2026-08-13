@@ -26,16 +26,49 @@ function Contact() {
     return nextErrors
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const nextErrors = validate()
-    setErrors(nextErrors)
-    if (Object.keys(nextErrors).length === 0) {
+ const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  const nextErrors = validate()
+  setErrors(nextErrors)
+
+  if (Object.keys(nextErrors).length > 0) return
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: '96b5d409-3da8-4b01-9f65-db18bc294c95',
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        message: form.message,
+        from_name: 'Puran Chaudhary Portfolio',
+      }),
+    })
+
+    const result = await response.json()
+
+    if (result.success) {
       setSubmitted(true)
       setForm(INITIAL_FORM)
-      setTimeout(() => setSubmitted(false), 5000)
+      setErrors({})
+
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
+    } else {
+      alert('Message could not be sent. Please try again.')
     }
+  } catch (error) {
+    console.error(error)
+    alert('Something went wrong. Please try again.')
   }
+}
 
   return (
     <section id="contact" className="section section--panel">
