@@ -23,8 +23,10 @@ function Hero() {
           </p>
 
           <div className="hero__actions">
-            <a href="/Puran-Chaudhary-CV.pdf" download className="btn btn--primary">
-              Download CV
+            <a href="/Puran Chaudhary CV.pdf"
+            download="Puran Chaudhary CV.pdf"
+            className="btn btn--primary">
+            Download Resume
             </a>
             <button className="btn btn--outline" onClick={() => handleScrollTo('contact')}>
               Contact Me
